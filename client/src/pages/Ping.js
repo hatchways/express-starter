@@ -7,7 +7,7 @@ function Ping(props) {
   const [answer, setAnswer] = useState("");
   useEffect(() => {
     props.incrementStep();
-  });
+  }, []);
 
   const submitAnswer = () => {
     let status;
@@ -35,7 +35,8 @@ function Ping(props) {
   return (
     <div>
       <Typography>
-        Step 3: Add your first name to server/.env and test the result below
+        Step 3: Add your first name to server/.env, refresh and test the result
+        below
       </Typography>
       <Typography>{result}</Typography>
 
