@@ -14,14 +14,14 @@ jobs: # a collection of steps
           command: "sudo n stable"
       - restore_cache: # special step to restore the dependency cache
           # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-{{ checksum "server/package.json" }}
       - run:
           name: install-npm-wee
           command: cd server && npm install
       - save_cache: # special step to save the dependency cache
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-{{ checksum "server/package.json" }}
           paths:
-            - ./node_modules
+            - server/node_modules
       - run: # run tests
           name: test
           command: cd server && npm test
