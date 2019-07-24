@@ -1,7 +1,6 @@
 version: 2 # use CircleCI 2.0
 jobs: # a collection of steps
   build: # runs not using Workflows must have a `build` job as entry point
-    working_directory: server/ # directory where steps will run
     docker: # run the steps with Docker
       - image: circleci/node:4.8.2 # ...with this image as the primary container; this is where all `steps` will run
       - image: mongo:3.4.4 # and this image as the secondary service container
@@ -18,11 +17,11 @@ jobs: # a collection of steps
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: install-npm-wee
-          command: npm install
+          command: cd server && npm install
       - save_cache: # special step to save the dependency cache
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
       - run: # run tests
           name: test
-          command: npm test
+          command: cd server && npm test
