@@ -1,11 +1,13 @@
-import createError from "http-errors";
-import express, { json, urlencoded } from "express";
-import { join } from "path";
-import cookieParser from "cookie-parser";
-import logger from "morgan";
+const createError = require("http-errors");
+const express = require("express");
+const { join } = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
 
-import indexRouter from "./routes/index";
-import pingRouter from "./routes/ping";
+const indexRouter = require("./routes/index");
+const pingRouter = require("./routes/ping");
+
+const { json, urlencoded } = express;
 
 var app = express();
 
